@@ -237,7 +237,18 @@ class QuizVirtualisation:
                 "type": "unique"
             },
             {
-                "question": "Analysez ce manifest YAML. Qu'est-ce qui est incorrect ?\n\napiVersion: v1\nkind: Pod\nmetadata:\n  name: my-pod\n  labels:\n    app nginx\nspec:\n  containers:\n  - name: nginx-container\n    image: nginx",
+                "question": """Analysez ce manifest YAML. Qu'est-ce qui est incorrect ?
+
+            apiVersion: v1
+            kind: Pod
+            metadata:
+              name: my-pod
+              labels:
+                app nginx
+            spec:
+              containers:
+              - name: nginx-container
+                image: nginx""",
                 "choices": [
                     "L'indentation est incorrecte",
                     "Il manque deux points après 'app' dans les labels",
@@ -261,10 +272,35 @@ class QuizVirtualisation:
             {
                 "question": "Pour déployer une application avec 3 replicas, quel manifest est correct ?",
                 "choices": [
-                    "apiVersion: apps/v1\nkind: Deployment\nspec:\n  replicas: 3",
-                    "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: my-app\nspec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: my-app\n  template:\n    metadata:\n      labels:\n        app: my-app\n    spec:\n      containers:\n      - name: my-container\n        image: my-image",
-                    "apiVersion: v1\nkind: Pod\nmetadata:\n  replicas: 3",
-                    "apiVersion: v1\nkind: ReplicaSet\nspec:\n  count: 3"
+                    """apiVersion: apps/v1
+            kind: Deployment
+            spec:
+              replicas: 3""",
+                    """apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              name: my-app
+            spec:
+              replicas: 3
+              selector:
+                matchLabels:
+                  app: my-app
+              template:
+                metadata:
+                  labels:
+                    app: my-app
+                spec:
+                  containers:
+                  - name: my-container
+                    image: my-image""",
+                    """apiVersion: v1
+            kind: Pod
+            metadata:
+              replicas: 3""",
+                    """apiVersion: v1
+            kind: ReplicaSet
+            spec:
+              count: 3"""
                 ],
                 "correct": [1],
                 "type": "unique"
@@ -292,7 +328,22 @@ class QuizVirtualisation:
                 "type": "multiple"
             },
             {
-                "question": "Analysez ce code et identifiez le(s) problème(s) :\n\napiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: nginx-deployment\nspec:\n  replicas: 2\n  template:\n    metadata:\n      labels:\n        app: nginx\n    spec:\n      containers:\n      - image: nginx\n        name: nginx",
+                "question": """Analysez ce code et identifiez le(s) problème(s) :
+
+            apiVersion: apps/v1
+            kind: Deployment
+            metadata:
+              name: nginx-deployment
+            spec:
+              replicas: 2
+              template:
+                metadata:
+                  labels:
+                    app: nginx
+                spec:
+                  containers:
+                  - image: nginx
+                    name: nginx""",
                 "choices": [
                     "Il manque le selector dans la spec",
                     "Le nombre de replicas est trop faible",
@@ -302,8 +353,12 @@ class QuizVirtualisation:
                 "correct": [0],
                 "type": "unique"
             },
+
             {
-                "question": "Que font ces commandes kubectl dans l'ordre ?\n1. kubectl apply -f deployment.yaml\n2. kubectl scale deployment my-app --replicas=5\n3. kubectl rollout undo deployment my-app",
+                "question": """Que font ces commandes kubectl dans l'ordre ?
+            1. kubectl apply -f deployment.yaml
+            2. kubectl scale deployment my-app --replicas=5
+            3. kubectl rollout undo deployment my-app""",
                 "choices": [
                     "Créent un déploiement, le suppriment, puis le recréent",
                     "Créent un déploiement, augmentent le nombre de replicas à 5, puis reviennent à la version précédente du déploiement",
@@ -358,7 +413,19 @@ class QuizVirtualisation:
                 "type": "multiple"
             },
             {
-                "question": "Analysez ce manifest de PersistentVolume. Qu'est-ce qui est incorrect ?\n\napiVersion: v1\nkind: PersistentVolume\nmetadata:\n  name: pv-volume\nspec:\n  capacity:\n    storage: 5Gi\n  accessModes:\n  - ReadWriteOnce\n  hostPath:\n    path: '/data'",
+                "question": """Analysez ce manifest de PersistentVolume. Qu'est-ce qui est incorrect ?
+
+            apiVersion: v1
+            kind: PersistentVolume
+            metadata:
+              name: pv-volume
+            spec:
+              capacity:
+                storage: 5Gi
+              accessModes:
+              - ReadWriteOnce
+              hostPath:
+                path: '/data'""",
                 "choices": [
                     "Il manque le label 'type: local'",
                     "Il manque le storageClassName",
@@ -391,7 +458,24 @@ class QuizVirtualisation:
                 "type": "unique"
             },
             {
-                "question": "Identifiez les éléments corrects dans ce manifest de Pod avec NFS : (Plusieurs réponses possibles)\n\nkind: Pod\napiVersion: v1\nmetadata:\n  name: pod-with-nfs\nspec:\n  volumes:\n  - name: nfs-volume\n    nfs:\n      server: 10.0.0.5\n      path: /storage\n  containers:\n  - name: app\n    image: nginx\n    volumeMounts:\n    - name: nfs-volume\n      mountPath: /usr/share/nginx/html",
+                "question": """Identifiez les éléments corrects dans ce manifest de Pod avec NFS : (Plusieurs réponses possibles)
+
+            kind: Pod
+            apiVersion: v1
+            metadata:
+              name: pod-with-nfs
+            spec:
+              volumes:
+              - name: nfs-volume
+                nfs:
+                  server: 10.0.0.5
+                  path: /storage
+              containers:
+              - name: app
+                image: nginx
+                volumeMounts:
+                - name: nfs-volume
+                  mountPath: /usr/share/nginx/html""",
                 "choices": [
                     "Le nom du volume dans volumes correspond au nom dans volumeMounts",
                     "Le chemin de montage dans le conteneur est correct pour nginx",
