@@ -469,7 +469,7 @@ def reset_quiz():
 
 quiz = QuizVirtualisation()
 
-st.title('Quiz de Gestion de Projet')
+st.title('Quiz de Virtualisation')
 
 # Initialisation
 initialiser_session()
