@@ -504,7 +504,7 @@ class QuizVirtualisation:
                     "Doit être monté sur tous les nodes du cluster",
                     "Permet le partage de données entre plusieurs pods"
                 ],
-                "correct": [0, 1, 3],
+                "correct": [0, 1, 2],
                 "type": "multiple"
             },
             {
